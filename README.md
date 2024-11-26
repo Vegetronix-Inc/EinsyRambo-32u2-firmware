@@ -1,4 +1,10 @@
-# mk3-32u2-firmware
+# VG3D 32u2 Firmware
+
+This repository is used to fork the firmware for the ATMEGA32u2 chip that controls the USB on the Einsy Rambo board of the [VG3D Printer](https://www.vegetronix.com/Products/3D-Printers).
+
+The original documentation is included below for reference, since the processes and attribution remain the same.
+
+## Original documentaion
 
 DFU and USB Serial firmware for Arduino based devices that use an Atmel 8/16/32u2 MCU as a usb to serial bridge.  This firmware addresses USB disconnection issues commonly seen with the Prusa i3 MK3.  All source in this repository is built against LUFA (C) Dean Camera, pulled on 12-28-2018.
 
@@ -123,7 +129,7 @@ MCU          = atmega32u2
 
 HOODSERIAL_OPTS = -DVENDORID=PRUSA_VID
 HOODSERIAL_OPTS += -DPRODUCTID=PRUSA_MK3_PID
-HOODSERIAL_OPTS += -DPRUSA_MK3_SERIAL
+HOODSERIAL_OPTS += -DEEPROM_SERIAL
 ```
 
 Save and run `make`.
@@ -132,6 +138,6 @@ This should result in several outputs, however we are interested in `dfu-bootloa
 
 They now need to be concatenated. There are many methods for doing this, I find that using the HxD utility works well in Windows.  There is a built in concatenate utility in `Tools->File Tools`.  When concatenating, `hoodserial.hex` should be first, followed by the`dfu-bootloader.hex` file.
 
-This firmware can also be built for the Arduino Mega or Uno.  The makefiles will need to be changed to the appropriate MCU (typically Atmega16u2), vendor, and product IDs. You will also want to make sure that the PRUSA_MK3_SERIAL definition is removed.
+This firmware can also be built for the Arduino Mega or Uno.  The makefiles will need to be changed to the appropriate MCU (typically Atmega16u2), vendor, and product IDs.
 
 Note that this repo doesn't have built in support for Ultimachine's product and vendor strings.  Firmware can be built for it using the Arduino Mega's strings.  Follow the same instructions as above, however use Atmega32u2 instead of Atmega16u2
