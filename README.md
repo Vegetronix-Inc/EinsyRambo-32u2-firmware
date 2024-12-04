@@ -2,9 +2,13 @@
 
 This repository is used to fork the firmware for the ATMEGA32u2 chip that controls the USB on the Einsy Rambo board of the [VG3D Printer](https://www.vegetronix.com/Products/3D-Printers).
 
+Example avrdude command:
+
+`avrdude -p m32u2 -F -P usb -b 19200 -c usbasp -U flash:w:full_bootloader.hex -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m`
+
 The original documentation is included below for reference, since the processes and attribution remain the same.
 
-## Original documentaion
+## Original documentation
 
 DFU and USB Serial firmware for Arduino based devices that use an Atmel 8/16/32u2 MCU as a usb to serial bridge.  This firmware addresses USB disconnection issues commonly seen with the Prusa i3 MK3.  All source in this repository is built against LUFA (C) Dean Camera, pulled on 12-28-2018.
 
@@ -129,7 +133,7 @@ MCU          = atmega32u2
 
 HOODSERIAL_OPTS = -DVENDORID=PRUSA_VID
 HOODSERIAL_OPTS += -DPRODUCTID=PRUSA_MK3_PID
-HOODSERIAL_OPTS += -DEEPROM_SERIAL
+HOODSERIAL_OPTS += -DPRUSA_MK3_SERIAL
 ```
 
 Save and run `make`.
